@@ -7,6 +7,10 @@ Firebase, SCD30, PMSA003I, Pi 4b
 wpa_supplicant.conf
 
 
+stemmaqt breakout
+https://www.youtube.com/watch?v=-d0rOHjntAo&t=217s
+3:38s
+
 ---------
 https://simplepush.io/blog/monitor-co2-with-raspberry-pi 
 To Enable I2C - Config of PI
