@@ -1,0 +1,134 @@
+https://github.com/GoogleCloudPlatform/python-docs-samples/blob/HEAD/firestore/cloud-client/snippets.py
+
+
+
+https://cloud.google.com/firestore/docs/create-database-server-client-library#python_1
+
+
+Provide authentication credentials to your application code by setting the environment variable GOOGLE_APPLICATION_CREDENTIALS. This variable applies only to your current shell session. If you want the variable to apply to future shell sessions, set the variable in your shell startup file, for example in the ~/.bashrc or ~/.profile file.
+
+
+export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
+
+pip3 install --upgrade google-cloud-firestore
+
+from google.cloud import firestore
+
+db = firestore.Client(project='my-project-id')
+
+doc_ref = db.collection(u'users').document(u'alovelace')
+doc_ref.set({
+    u'first': u'Ada',
+    u'last': u'Lovelace',
+    u'born': 1815
+})
+
+users_ref = db.collection(u'users')
+docs = users_ref.stream()
+
+for doc in docs:
+    print(f'{doc.id} => {doc.to_dict()}')
+    
+    import json
+from scd30_i2c import SCD30
+import datetime
+import time
+from google.cloud import firestore
+
+scd30 = SCD30()
+scd30.set_measurement_interval(2)
+scd30.start_periodic_measurement()
+
+db = firestore.Client(project='dainamycs')
+#Sample of data push to firebase
+#doc_ref = db.collection(u'RaspberryPi4').document(u'-1')
+#doc_ref.set({
+#    u'co2': '2',
+#    u'temp': 'm[1]',
+#    u'rh': 'm[2]'
+#})
+
+users_ref = db.collection(u'users')
+docs = users_ref.stream()
+
+for doc in docs:
+    print(f'{doc.id} => {doc.to_dict()}')
+
+
+
+#cred = credentials.Certificate("/home/pi/dainamycs-firebase-adminsdk-yyw4z-11f9604804.json")
+# Initialize Firebase app with the provided firebaseConfig
+#firebase=firebase_admin.initialize_app(cred)
+
+#firestore_client = firestore.client()
+#db = firebase.database()
+
+time.sleep(2)
+
+while True:
+    if scd30.get_data_ready():
+        m = scd30.read_measurement()
+        if m is not None:
+            data = {'co2': m[0], 'temp': m[1], 'rh': m[2], u'dateExample': datetime.datetime.now(tz=datetime.timezone.utc)}
+            doc_ref = db.collection(u'RaspberryPi4').document(u'-1').set(data)
+            print(f"Data logged to Firebase:", data)
+            time.sleep(15)
+        else:
+            time.sleep(0.2)
+            
+            
+ --------------------------------------------------------------------------------------------------------------------------------------------------           ---
+           
+            scd30fya.py
+            
+            
+            
+            
+            
+from scd30_i2c import SCD30
+import datetime
+import time
+from google.cloud import firestore
+
+scd30 = SCD30()
+scd30.set_measurement_interval(2)
+scd30.start_periodic_measurement()
+
+db = firestore.Client(project='dainamycs')
+#Sample of data push to firebase
+#doc_ref = db.collection(u'RaspberryPi4').document(u'-1')
+#doc_ref.set({
+#    u'co2': '2',
+#    u'temp': 'm[1]',
+#    u'rh': 'm[2]'
+#})
+
+users_ref = db.collection(u'users')
+docs = users_ref.stream()
+
+for doc in docs:
+    print(f'{doc.id} => {doc.to_dict()}')
+
+
+
+#cred = credentials.Certificate("/home/pi/dainamycs-firebase-adminsdk-yyw4z-11f9604804.json")
+# Initialize Firebase app with the provided firebaseConfig
+#firebase=firebase_admin.initialize_app(cred)
+
+#firestore_client = firestore.client()
+#db = firebase.database()
+
+time.sleep(2)
+
+while True:
+    if scd30.get_data_ready():
+        m = scd30.read_measurement()
+        if m is not None:
+            data = {'co2': m[0], 'temp': m[1], 'rh': m[2], u'dateExample': datetime.datetime.now(tz=datetime.timezone.utc)}
+            doc_ref = db.collection(u'RaspberryPi4').document(u'-1').set(data)
+            print(f"Data logged to Firebase:", data)
+            time.sleep(15)
+        else:
+            time.sleep(0.2)
+
+
