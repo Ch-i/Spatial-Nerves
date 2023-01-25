@@ -5,6 +5,8 @@ https://github.com/GoogleCloudPlatform/python-docs-samples/blob/HEAD/firestore/c
 https://cloud.google.com/firestore/docs/create-database-server-client-library#python_1
 
 
+sudo nano ~/.bashrc
+
 Provide authentication credentials to your application code by setting the environment variable GOOGLE_APPLICATION_CREDENTIALS. This variable applies only to your current shell session. If you want the variable to apply to future shell sessions, set the variable in your shell startup file, for example in the ~/.bashrc or ~/.profile file.
 
 
