@@ -1,0 +1,44 @@
+pip install influxdb-client
+pip install flightsql-dbapi
+pip install pandas
+
+
+sudo nano ~/.bashrc
+export INFLUXDB_TOKEN= ~~~~~~~~~~~~~~~~~##########################@@@@@@@@@@@@@@@@@@@
+
+---
+$Grafana
+
+sudo apt-get install -y apt-transport-https
+sudo apt-get install -y software-properties-common wget
+sudo wget -q -O /usr/share/keyrings/grafana.key https://apt.grafana.com/gpg.key
+
+echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+sudo apt-get update
+
+# Install the latest OSS release:
+sudo apt-get install grafana
+
+# Install the latest Enterprise release:
+sudo apt-get install grafana-enterprise
+
+sudo apt-get install -y adduser
+wget <.deb package url>
+sudo dpkg -i grafana<edition>_<version>_arm64.deb
+
+
+sudo systemctl daemon-reload
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+
+sudo systemctl enable grafana-server.service
+
+# Alternatively, create a file in /etc/systemd/system/grafana-server.service.d/override.conf
+systemctl edit grafana-server.service
+
+sudo service grafana-server start
+sudo service grafana-server status
+
+sudo update-rc.d grafana-server defaults
+
+./bin/grafana-server web
